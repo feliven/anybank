@@ -6,8 +6,8 @@ export class Transacao {
 }
 
 export enum TipoTransacao {
-  DEPOSITO = 'deposito',
-  SAQUE = 'saque',
+  DEPOSITO = 'Depósito',
+  SAQUE = 'Saque',
 }
 // É importante que a string esteja em letras minúsculas,
 // pois deve ser igual à string utilizada no atributo value da tag <option> no HTML do formulário.
