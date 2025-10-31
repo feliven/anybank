@@ -2,10 +2,13 @@
   <h2 class="titulo">Extrato</h2>
 
   <ul class="transacoes">
-    @for (item of listaTransacoes(); track $index) {
+    @for (itemListaTransacoes of listaTransacoes(); track
+    itemListaTransacoes.id) {
     <li>
-      <app-transacao [transacao]="item"></app-transacao>
+      <app-transacao [transacao]="itemListaTransacoes"></app-transacao>
     </li>
+    } @empty {
+    <li aria-hidden="true">Não há transações.</li>
     }
   </ul>
 </aside>
