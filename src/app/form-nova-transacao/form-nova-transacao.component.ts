@@ -11,10 +11,19 @@ import { TipoTransacao, Transacao } from '../modelos/transacao';
 export class FormNovaTransacaoComponent {
   tipoTransacao: string = '';
   valorTransacao: number = 0;
-  transacaoCriada = output();
+  transacaoCriada = output<Transacao>();
+  // um argumento do tipo Transacao não é atribuível a um parâmetro do tipo void.
+  // Para resolver isso, precisamos tipar corretamente a emissão do output.
 
   onSubmit() {
-    this.transacaoCriada.emit();
-    new Transacao(this.tipoTransacao as TipoTransacao, this.valorTransacao);
+    const transacao = new Transacao(
+      this.tipoTransacao as TipoTransacao,
+      this.valorTransacao
+    );
+
+    this.transacaoCriada.emit(transacao);
+
+    this.tipoTransacao = '';
+    this.valorTransacao = 0;
   }
 }
