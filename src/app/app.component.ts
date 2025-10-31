@@ -2,7 +2,7 @@ import { Component, computed, signal } from '@angular/core';
 
 import { BannerComponent } from './banner/banner.component';
 import { FormNovaTransacaoComponent } from './form-nova-transacao/form-nova-transacao.component';
-import { Transacao } from './modelos/transacao';
+import { TipoTransacao, Transacao } from './modelos/transacao';
 import {} from 'rxjs';
 
 @Component({
@@ -16,7 +16,16 @@ export class AppComponent {
 
   saldo = computed(() => {
     return this.listaTransacoes().reduce((acumulador, transacaoAtual) => {
-      return acumulador + transacaoAtual.valor;
+      switch (transacaoAtual.tipo) {
+        case TipoTransacao.DEPOSITO:
+          return acumulador + transacaoAtual.valor;
+
+        case TipoTransacao.SAQUE:
+          return acumulador - transacaoAtual.valor;
+
+        default:
+          throw new Error('Tipo de transação não identificado');
+      }
     }, 0);
   });
 
