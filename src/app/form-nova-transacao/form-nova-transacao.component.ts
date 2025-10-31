@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TipoTransacao, Transacao } from '../modelos/transacao';
 
 @Component({
   selector: 'app-form-nova-transacao',
@@ -10,12 +11,10 @@ import { FormsModule } from '@angular/forms';
 export class FormNovaTransacaoComponent {
   tipoTransacao: string = '';
   valorTransacao: number = 0;
+  transacaoCriada = output();
 
   onSubmit() {
-    console.log(this.tipoTransacao);
-    console.log(this.valorTransacao);
-    console.log('enviado');
-    this.tipoTransacao = '';
-    this.valorTransacao = 0;
+    this.transacaoCriada.emit();
+    new Transacao(this.tipoTransacao as TipoTransacao, this.valorTransacao);
   }
 }

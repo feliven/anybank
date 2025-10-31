@@ -10,5 +10,7 @@ import { FormNovaTransacaoComponent } from './form-nova-transacao/form-nova-tran
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'anybank';
+  processarTransacao() {
+    console.log('transação criada!');
+  }
 }
