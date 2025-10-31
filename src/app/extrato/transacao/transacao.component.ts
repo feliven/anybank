@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 
-import { Transacao } from '../../modelos/transacao';
+import { TipoTransacao, Transacao } from '../../modelos/transacao';
 
 @Component({
   selector: 'app-transacao',
@@ -11,4 +11,6 @@ import { Transacao } from '../../modelos/transacao';
 })
 export class TransacaoComponent {
   transacao = input.required<Transacao>();
+
+  tipoTransacaoEnum = TipoTransacao;
 }
