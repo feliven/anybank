@@ -12,5 +12,10 @@ import { TipoTransacao, Transacao } from '../../modelos/transacao';
 export class TransacaoComponent {
   transacao = input.required<Transacao>();
 
-  tipoTransacaoEnum = TipoTransacao;
+  valor = computed(() => {
+    if (this.transacao().tipo === TipoTransacao.SAQUE) {
+      return -this.transacao().valor;
+    }
+    return this.transacao().valor;
+  });
 }

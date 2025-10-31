@@ -1,8 +1,4 @@
 <div class="transacao">
-  @if(transacao().tipo === tipoTransacaoEnum.SAQUE ){
-  <span class="valor">{{ transacao().valor * -1 | currency : "BRL" }}</span>
-  }@else if(transacao().tipo === tipoTransacaoEnum.DEPOSITO ){
-  <span class="valor">{{ transacao().valor | currency : "BRL" }}</span>
-  }
+  <span class="valor">{{ valor() | currency : "BRL" }}</span>
   <span class="data">{{ transacao().data | date : "dd/MM/yyyy" }}</span>
 </div>
