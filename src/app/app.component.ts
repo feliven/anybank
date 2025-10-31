@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 import { BannerComponent } from './banner/banner.component';
 import { FormNovaTransacaoComponent } from './form-nova-transacao/form-nova-transacao.component';
 import { Transacao } from './modelos/transacao';
+import {} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,12 @@ import { Transacao } from './modelos/transacao';
 })
 export class AppComponent {
   listaTransacoes = signal<Transacao[]>([]);
+
+  saldo = computed(() => {
+    return this.listaTransacoes().reduce((acumulador, transacaoAtual) => {
+      return acumulador + transacaoAtual.valor;
+    }, 0);
+  });
 
   processarTransacao(transacao: Transacao) {
     this.listaTransacoes.update((listaAtual) => [transacao, ...listaAtual]);
