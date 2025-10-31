@@ -1,5 +1,7 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+
+import { Transacao } from '../../modelos/transacao';
 
 @Component({
   selector: 'app-transacao',
@@ -8,6 +10,5 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
   styleUrl: './transacao.component.css',
 })
 export class TransacaoComponent {
-  valor = computed(() => {});
-  transacao() {}
+  transacao = input.required<Transacao>();
 }

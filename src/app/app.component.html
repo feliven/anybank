@@ -5,5 +5,8 @@
       (transacaoCriada)="processarTransacao($event)"
     ></app-form-nova-transacao>
   </div>
-  <app-extrato class="extrato"></app-extrato>
+  <app-extrato
+    [listaTransacoes]="listaTransacoes()"
+    class="extrato"
+  ></app-extrato>
 </div>
