@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 import { BannerComponent } from './banner/banner.component';
 import { FormNovaTransacaoComponent } from './form-nova-transacao/form-nova-transacao.component';
@@ -11,7 +11,11 @@ import { Transacao } from './modelos/transacao';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  listaTransacoes = signal<Transacao[]>([]);
+
   processarTransacao(transacao: Transacao) {
-    console.log(transacao);
+    this.listaTransacoes.update((listaAtual) => [transacao, ...listaAtual]);
+
+    console.log(this.listaTransacoes());
   }
 }
